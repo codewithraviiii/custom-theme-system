@@ -1,12 +1,19 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { TitleCasePipe, NgClass } from '@angular/common';
+import { ThemeService } from './theme';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [TitleCasePipe, NgClass],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
-export class App {
-  protected readonly title = signal('my_app');
+export class AppComponent {
+  currentTheme = 'light';
+  constructor(private themeService: ThemeService) {}
+  setTheme(theme: string) {
+    this.currentTheme = theme;
+    this.themeService.setTheme(theme);
+  }
 }
