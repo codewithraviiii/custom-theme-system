@@ -1,13 +1,58 @@
 <div class="app-container" [ngClass]="currentTheme">
   <div class="glass-card">
-    <div class="badge">Angular 2026</div>
+    <div class="badge">ANGULAR 2026</div>
     <h1>🎨 Theme Studio</h1>
-    <p class="subtitle">Switch between beautiful themes instantly</p>
+    <p class="subtitle">Customize your experience</p>
+
     <div class="btn-group">
       <button class="theme-btn" [class.active]="currentTheme === 'light'" (click)="setTheme('light')">☀️ Light</button>
       <button class="theme-btn" [class.active]="currentTheme === 'dark'" (click)="setTheme('dark')">🌙 Dark</button>
       <button class="theme-btn" [class.active]="currentTheme === 'blue'" (click)="setTheme('blue')">🌊 Ocean</button>
     </div>
+
+    <div class="divider"></div>
+
+    <div class="customizer">
+      <h3>🎨 Customize</h3>
+      <div class="control-row">
+        <label>Background Color</label>
+        <div class="color-preview">
+          <input type="color" [(ngModel)]="customBg" (input)="applyBg()" />
+          <span>{{ customBg }}</span>
+        </div>
+      </div>
+      <div class="control-row">
+        <label>Text Color</label>
+        <div class="color-preview">
+          <input type="color" [(ngModel)]="customText" (input)="applyTextColor()" />
+          <span>{{ customText }}</span>
+        </div>
+      </div>
+      <div class="control-row">
+        <label>Font Style</label>
+        <select [(ngModel)]="selectedFont" (change)="applyFont()">
+          <option value="Inter">Inter</option>
+          <option value="Georgia">Georgia</option>
+          <option value="Courier New">Courier New</option>
+          <option value="Arial">Arial</option>
+        </select>
+      </div>
+      <div class="control-row">
+        <label>Font Size</label>
+        <div class="slider-wrap">
+          <input type="range" min="12" max="28" [(ngModel)]="fontSize" (input)="applyFontSize()" />
+          <span>{{ fontSize }}px</span>
+        </div>
+      </div>
+      <div class="control-row">
+        <label>Card Radius</label>
+        <div class="slider-wrap">
+          <input type="range" min="0" max="50" [(ngModel)]="borderRadius" (input)="applyRadius()" />
+          <span>{{ borderRadius }}px</span>
+        </div>
+      </div>
+    </div>
+
     <div class="divider"></div>
     <div class="status">
       <div class="dot"></div>
